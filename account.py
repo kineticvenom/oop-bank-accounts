@@ -27,15 +27,21 @@ class Account:
             reader = csv.reader(csvfile)
             for row in reader:
                 account = Account(row[0],row[1],row[2])
-                print(account)
+                # print(account)
                 accounts.append(account)
         return accounts
 
-    def find(self, id):
-        pass
+    def find(id):
+        for account in Account.all_accounts():
+            # print(account.id)
+            if account.id == id :
+                # print(account)
+                return account
+        
         
 
 
 
-print(Account.all_accounts())
+# print(Account.all_accounts())
+print(Account.find('15156'))
 # print(bob)
