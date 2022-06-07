@@ -5,9 +5,13 @@ import csv
 import os.path
 
 class Account:
-    def __init__(self):
-        self.accounts = Account.objects()
-        
+    def __init__(self, id, balance, date):
+        self.id = id
+        self.balance = balance
+        self.date = date
+    
+    def __str__(self):
+        return f"{self.id}, {self.balance}"
 
     def withdraw(self):
         pass
@@ -16,14 +20,22 @@ class Account:
         pass
 
     @classmethod
-    def objects(cls):
+    def all_accounts(cls):
         accounts = []
-        my_path = os.path.abspath(os.path.dirname(__file__))
-        path = os.path.join(my_path, "support/accounts.csv")
+        path = "support/accounts.csv"
         with open(path) as csvfile:
-            reader = csv.DictReader(csvfile)
+            reader = csv.reader(csvfile)
             for row in reader:
-                accounts.append(Account(**dict(row)))
+                account = Account(row[0],row[1],row[2])
+                print(account)
+                accounts.append(account)
         return accounts
 
+    def find(self, id):
+        pass
+        
 
+
+
+print(Account.all_accounts())
+# print(bob)
