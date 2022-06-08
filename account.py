@@ -2,7 +2,7 @@ from unicodedata import name
 
 
 import csv
-import os.path
+
 
 class Account:
     def __init__(self, id, balance, date):
@@ -13,12 +13,18 @@ class Account:
     def __str__(self):
         return f"{self.id}, {self.balance}"
 
-    def withdraw(self):
-        pass
+    def withdraw(self,amount):
+        # print(type(self.balance))
+        if self.balance > amount :
+            self.balance = int(self.balance) - int(amount)
+            return f'Your new balance is : {self.balance}'
+        else:
+            return f'Insufficient funds! Currant Balance: {self.balance}' 
 
-    def deposit(self):
-        pass
-
+    def deposit(self, amount):
+        self.balance = int(self.balance) + int(amount)
+        return f'Your new balance is : {self.balance}'
+    
     @classmethod
     def all_accounts(cls):
         accounts = []
@@ -43,5 +49,8 @@ class Account:
 
 
 # print(Account.all_accounts())
-print(Account.find('15156'))
+# print(Account.find('15156'))
+
+# bob = Account.find('15156')
 # print(bob)
+# print(bob.deposit('200'))
